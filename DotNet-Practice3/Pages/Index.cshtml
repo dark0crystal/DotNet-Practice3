@@ -4,11 +4,23 @@
 <div> 
     @using (Html.BeginForm(FormMethod.Post) )
     {
-        <p>Enter user name: @Html.TextBoxFor(x => x.uname) </p>
-        <p>password:@Html.PasswordFor(x => x.pass)</p>
-        <p><input type="submit" value="Submit registration information"/></p>
+        <p>Enter Selection: @Html.DropDownListFor(x=>x.selection ,new List<SelectListItem>()
+                {
+                    new SelectListItem("Gorup by","groupBy"),
+                    new SelectListItem("get number of elements","getNum")
+                    
+                }) </p>
+        <p><input type="submit" value="Submit Selection"/></p>
+    }
+    @if (ViewData["data"] != null)
+    {
+        <div>
+            @ViewData["data"]
+        </div>
     }
 
-    <h1>Name: @Model.uname</h1>
-    <h1>Pass: @Model.pass</h1>
+    @if (ViewBag.message != null)
+    {
+        <p style="color:red;">@ViewBag.message</p>
+    }
 </div>
